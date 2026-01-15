@@ -14,7 +14,7 @@ this version focuses on security, usability, and AI-assisted configuration.
 
 ## WARNING
 
-The advanced SSH & Web Terminal add-on is very powerful and gives you access
+The SSH & Claude Code Terminal add-on is very powerful and gives you access
 to almost all tools and hardware of your system.
 
 While this add-on is created and maintained with care and with security in mind,
@@ -59,19 +59,23 @@ well. Additionally, it comes out of the box with the following:
 
 ## Installation
 
-The installation of this add-on is pretty straightforward and not different in
-comparison to installing any other Home Assistant add-on.
+This add-on is not part of the official Home Assistant add-on store.
+To install it, you need to add this repository as a custom repository:
 
-1. Click the Home Assistant My button below to open the add-on on your Home
-   Assistant instance.
-
-   [![Open this add-on in your Home Assistant instance.][addon-badge]][addon]
-
-1. Click the "Install" button to install the add-on.
+1. Open your Home Assistant instance.
+1. Navigate to **Settings** → **Add-ons** → **Add-on Store**.
+1. Click the menu (three dots) in the top right corner.
+1. Select **Repositories**.
+1. Add the following URL:
+   ```
+   https://github.com/jantimon/ha-addon-ssh
+   ```
+1. Click **Add** and then **Close**.
+1. Refresh the page and find "SSH & Claude Code Terminal" in the add-on store.
+1. Click **Install**.
 1. Configure the `username` and `password`/`authorized_keys` options.
-1. Start the "Advanced SSH & Web Terminal" add-on.
-1. Check the logs of the "Advanced SSH & Web Terminal" add-on to see if everything
-   went well.
+1. Start the "SSH & Claude Code Terminal" add-on.
+1. Check the logs of the add-on to see if everything went well.
 
 ## Configuration
 
@@ -287,20 +291,16 @@ based on the following:
 
 Got questions?
 
-You have several options to get them answered:
-
-- The [Home Assistant Community Add-ons Discord chat server][discord] for add-on
-  support and feature requests.
+- [Open an issue][issue] on GitHub for bug reports and feature requests.
 - The [Home Assistant Discord chat server][discord-ha] for general Home
   Assistant discussions and questions.
-- The Home Assistant [Community Forum][forum].
 - Join the [Reddit subreddit][reddit] in [/r/homeassistant][reddit]
-
-You could also [open an issue here][issue] GitHub.
 
 ## Authors & contributors
 
-The original setup of this repository is by [Franck Nijhof][frenck].
+This fork is maintained by [Jan Nicklas][jantimon].
+
+The original add-on was created by [Franck Nijhof][frenck].
 
 For a full list of all authors and contributors,
 check [the contributors page][contributors].
@@ -329,22 +329,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[addon-badge]: https://my.home-assistant.io/badges/supervisor_addon.svg
-[addon]: https://my.home-assistant.io/redirect/supervisor_addon/?addon=a0d7b954_ssh&repository_url=https%3A%2F%2Fgithub.com%2Fhassio-addons%2Frepository
 [alpine-packages]: https://pkgs.alpinelinux.org/packages
-[contributors]: https://github.com/hassio-addons/addon-ssh/graphs/contributors
+[claude-code]: https://claude.ai/code
+[contributors]: https://github.com/jantimon/ha-addon-ssh/graphs/contributors
 [discord-ha]: https://discord.gg/c5DvZ4e
-[discord]: https://discord.me/hassioaddons
-[forum]: https://community.home-assistant.io/t/community-hass-io-add-on-ssh-web-terminal/33820?u=frenck
 [frenck]: https://github.com/frenck
 [github-ssh]: https://help.github.com/articles/connecting-to-github-with-ssh/
-[hass-ssh]: https://github.com/home-assistant/addons/tree/master/ssh
-[issue]: https://github.com/hassio-addons/addon-ssh/issues
+[hass-ssh]: https://github.com/hassio-addons/addon-ssh
+[issue]: https://github.com/jantimon/ha-addon-ssh/issues
+[jantimon]: https://github.com/jantimon
 [ohmyzsh]: http://ohmyz.sh/
 [openssh]: https://www.openssh.com/
 [reddit]: https://reddit.com/r/homeassistant
-[releases]: https://github.com/hassio-addons/addon-ssh/releases
+[releases]: https://github.com/jantimon/ha-addon-ssh/releases
 [semver]: https://semver.org/spec/v2.0.0.html
-[zsh]: https://en.wikipedia.org/wiki/Z_shell
-[claude-code]: https://claude.ai/code
 [yamllint]: https://yamllint.readthedocs.io/
+[zsh]: https://en.wikipedia.org/wiki/Z_shell
