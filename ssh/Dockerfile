@@ -122,7 +122,7 @@ RUN \
     \
     && pip3 install -r /tmp/requirements.txt \
     \
-    && npm install -g @anthropic-ai/claude-code \
+    && npm install -g @anthropic-ai/claude-code@2.1.7 \
     && npm cache clean --force \
     \
     && apk del --no-cache --purge .build-dependencies \
