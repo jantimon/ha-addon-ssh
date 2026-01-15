@@ -1,38 +1,32 @@
-# Home Assistant Community Add-on: Advanced SSH & Web Terminal
+# Home Assistant Add-on: SSH & Claude Code Terminal
 
 [![GitHub Release][releases-shield]][releases]
-![Project Stage][project-stage-shield]
 [![License][license-shield]](LICENSE.md)
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 
 [![Github Actions][github-actions-shield]][github-actions]
-![Project Maintenance][maintenance-shield]
-[![GitHub Activity][commits-shield]][commits]
-
-[![Discord][discord-shield]][discord]
-[![Community Forum][forum-shield]][forum]
-
-[![Sponsor Frenck via GitHub Sponsors][github-sponsors-shield]][github-sponsors]
-
-[![Support Frenck on Patreon][patreon-shield]][patreon]
 
 This add-on allows you to log in to your Home Assistant instance using
-SSH or by using the Web Terminal.
+SSH or Web Terminal, with [Claude Code][claude-code] pre-installed for
+AI-assisted Home Assistant configuration.
 
 ![Web Terminal in the Home Assistant Frontend](images/screenshot.png)
 
 ## About
 
 This add-on allows you to log in to your Home Assistant instance using
-SSH or a Web Terminal, giving you to access your folders and
+SSH or a Web Terminal, giving you access to your folders and
 also includes a command-line tool to do things like restart, update,
 and check your instance.
 
-This is an enhanced version of the provided
-[SSH add-on by Home Assistant][hass-ssh] and focuses on security,
-usability, flexibility and also provides access using a web interface.
+This fork includes **Claude Code**, an AI-powered coding assistant that can
+help you optimize your Home Assistant configuration, write automations,
+and troubleshoot issues directly from the terminal.
+
+Based on the [Advanced SSH & Web Terminal add-on][upstream] by the
+Home Assistant Community Add-ons project.
 
 [:books: Read the full add-on documentation][docs]
 
@@ -78,8 +72,38 @@ well. Additionally, it comes out of the box with the following:
   for the more experienced user. It even comes preloaded with
   ["Oh My ZSH"][ohmyzsh], with some plugins enabled as well.
 - Contains a sensible set of tools right out of the box: curl, Wget, RSync, GIT,
-  Nmap, Mosquitto client, MariaDB/MySQL client, Awake (“wake on LAN”), Nano,
+  Nmap, Mosquitto client, MariaDB/MySQL client, Awake ("wake on LAN"), Nano,
   Vim, tmux, and a bunch commonly used networking tools.
+- **[Claude Code][claude-code]** pre-installed for AI-assisted Home Assistant
+  configuration and automation development.
+- **yamllint** included for validating YAML configuration files.
+
+## Installation
+
+This add-on is not part of the official Home Assistant add-on repository.
+To install it, you need to add this repository as a custom repository:
+
+1. Open your Home Assistant instance
+2. Navigate to **Settings** → **Add-ons** → **Add-on Store**
+3. Click the menu (three dots) in the top right corner
+4. Select **Repositories**
+5. Add the following URL:
+   ```
+   https://github.com/jantimon/ha-addon-ssh
+   ```
+6. Click **Add** and then **Close**
+7. Refresh the page and find "SSH & Claude Code Terminal" in the add-on store
+8. Click **Install**
+
+After installation, configure your username and password/SSH keys, then start
+the add-on.
+
+## Using Claude Code
+
+1. Open the terminal (via SSH or Web Terminal in the sidebar)
+2. Run `claude` to start Claude Code
+3. On first use, run `/login` to authenticate via your browser
+4. Start asking questions about your Home Assistant configuration
 
 ## Support
 
@@ -146,34 +170,23 @@ SOFTWARE.
 
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
-[commits-shield]: https://img.shields.io/github/commit-activity/y/hassio-addons/addon-ssh.svg
-[commits]: https://github.com/hassio-addons/addon-ssh/commits/main
-[contributors]: https://github.com/hassio-addons/addon-ssh/graphs/contributors
+[claude-code]: https://claude.ai/code
+[contributors]: https://github.com/jantimon/ha-addon-ssh/graphs/contributors
 [discord-ha]: https://discord.gg/c5DvZ4e
-[discord-shield]: https://img.shields.io/discord/478094546522079232.svg
-[discord]: https://discord.me/hassioaddons
-[docs]: https://github.com/hassio-addons/addon-ssh/blob/main/ssh/DOCS.md
-[forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
+[docs]: https://github.com/jantimon/ha-addon-ssh/blob/main/ssh/DOCS.md
 [forum]: https://community.home-assistant.io/t/community-hass-io-add-on-ssh-web-terminal/33820?u=frenck
 [frenck]: https://github.com/frenck
-[github-sponsors-shield]: https://frenck.dev/wp-content/uploads/2019/12/github_sponsor.png
-[github-sponsors]: https://github.com/sponsors/frenck
-[github-actions-shield]: https://github.com/hassio-addons/addon-ssh/workflows/CI/badge.svg
-[github-actions]: https://github.com/hassio-addons/addon-ssh/actions
-[hass-ssh]: https://github.com/home-assistant/addons/tree/master/ssh
-[issue]: https://github.com/hassio-addons/addon-ssh/issues
-[license-shield]: https://img.shields.io/github/license/hassio-addons/addon-ssh.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2025.svg
+[github-actions-shield]: https://github.com/jantimon/ha-addon-ssh/workflows/CI/badge.svg
+[github-actions]: https://github.com/jantimon/ha-addon-ssh/actions
+[issue]: https://github.com/jantimon/ha-addon-ssh/issues
+[license-shield]: https://img.shields.io/github/license/jantimon/ha-addon-ssh.svg
 [ohmyzsh]: http://ohmyz.sh/
 [openssh]: https://www.openssh.com/
-[patreon-shield]: https://frenck.dev/wp-content/uploads/2019/12/patreon.png
-[patreon]: https://www.patreon.com/frenck
-[project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
 [reddit]: https://reddit.com/r/homeassistant
-[releases-shield]: https://img.shields.io/github/release/hassio-addons/addon-ssh.svg
-[releases]: https://github.com/hassio-addons/addon-ssh/releases
-[repository]: https://github.com/hassio-addons/repository
+[releases-shield]: https://img.shields.io/github/release/jantimon/ha-addon-ssh.svg
+[releases]: https://github.com/jantimon/ha-addon-ssh/releases
 [semver]: http://semver.org/spec/v2.0.0.htm
 [ssh-audit-image]: images/ssh-audit.png
 [ssh-audit]: https://github.com/jtesta/ssh-audit
+[upstream]: https://github.com/hassio-addons/addon-ssh
 [zsh]: https://en.wikipedia.org/wiki/Z_shell

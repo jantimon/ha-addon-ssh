@@ -1,9 +1,9 @@
 ---
-name: Advanced SSH & Web Terminal
+name: SSH & Claude Code Terminal
 version: dev
 slug: ssh
-description: A supercharged SSH & Web Terminal access to your Home Assistant instance
-url: https://github.com/hassio-addons/addon-ssh
+description: SSH & Web Terminal with Claude Code for AI-assisted Home Assistant configuration
+url: https://github.com/jantimon/ha-addon-ssh
 startup: services
 ingress: true
 ingress_port: 0

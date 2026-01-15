@@ -1,13 +1,16 @@
-# Home Assistant Community Add-on: Advanced SSH & Web Terminal
+# Home Assistant Add-on: SSH & Claude Code Terminal
 
 This add-on allows you to log in to your Home Assistant instance using
-SSH or a Web Terminal, giving you to access your folders and
+SSH or a Web Terminal, giving you access to your folders and
 also includes a command-line tool to do things like restart, update,
 and check your instance.
 
-This is an enhanced version of the provided
-[SSH add-on by Home Assistant][hass-ssh] and focuses on security,
-usability, flexibility and also provides access using a web interface.
+This fork includes [Claude Code][claude-code], an AI-powered coding assistant
+that can help you optimize your Home Assistant configuration, write automations,
+and troubleshoot issues directly from the terminal.
+
+Based on the [SSH add-on by Home Assistant Community Add-ons][hass-ssh],
+this version focuses on security, usability, and AI-assisted configuration.
 
 ## WARNING
 
@@ -48,8 +51,11 @@ well. Additionally, it comes out of the box with the following:
   for the more experienced user. It even comes preloaded with
   ["Oh My ZSH"][ohmyzsh], with some plugins enabled as well.
 - Contains a sensible set of tools right out of the box: curl, Wget, RSync, GIT,
-  Nmap, Mosquitto client, MariaDB/MySQL client, Awake (“wake on LAN”), Nano,
+  Nmap, Mosquitto client, MariaDB/MySQL client, Awake ("wake on LAN"), Nano,
   Vim, tmux, and a bunch commonly used networking tools.
+- [Claude Code][claude-code] pre-installed for AI-assisted Home Assistant
+  configuration and automation development.
+- [yamllint][yamllint] included for validating YAML configuration files.
 
 ## Installation
 
@@ -225,6 +231,39 @@ Customize your shell environment even more with the `init_commands` option.
 Add one or more shell commands to the list, and they will be executed every
 single time this add-on starts.
 
+## Using Claude Code
+
+This add-on comes with [Claude Code][claude-code] pre-installed, an AI-powered
+coding assistant from Anthropic that can help you with Home Assistant
+configuration.
+
+### Getting Started
+
+1. Open the terminal (via SSH or Web Terminal)
+2. Run `claude` to start Claude Code
+3. On first use, run `/login` to authenticate via your browser
+4. Start asking questions about your Home Assistant configuration
+
+### Example Use Cases
+
+- Writing and debugging automations
+- Optimizing YAML configurations
+- Understanding complex templates
+- Troubleshooting integration issues
+- Converting automations between formats
+
+### YAML Validation
+
+This add-on also includes `yamllint` for validating your YAML files:
+
+```bash
+# Validate a specific file
+yamllint /config/configuration.yaml
+
+# Validate all YAML files in config
+yamllint /config/*.yaml
+```
+
 ## Known issues and limitations
 
 - When SFTP is enabled, the username MUST be set to `root`.
@@ -307,3 +346,5 @@ SOFTWARE.
 [releases]: https://github.com/hassio-addons/addon-ssh/releases
 [semver]: https://semver.org/spec/v2.0.0.html
 [zsh]: https://en.wikipedia.org/wiki/Z_shell
+[claude-code]: https://claude.ai/code
+[yamllint]: https://yamllint.readthedocs.io/

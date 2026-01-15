@@ -56,6 +56,8 @@ RUN \
         ncurses=6.5_p20250503-r0 \
         net-tools=2.10-r3 \
         nmap=7.97-r0 \
+        nodejs=22.16.0-r2 \
+        npm=11.6.4-r0 \
         openssh=10.0_p1-r10 \
         openssl=3.5.4-r0 \
         procps-ng=4.0.4-r3 \
@@ -119,6 +121,9 @@ RUN \
     && cp /usr/bin/docker /usr/local/bin/.undocked \
     \
     && pip3 install -r /tmp/requirements.txt \
+    \
+    && npm install -g @anthropic-ai/claude-code \
+    && npm cache clean --force \
     \
     && apk del --no-cache --purge .build-dependencies \
     \
