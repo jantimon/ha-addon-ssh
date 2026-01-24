@@ -302,15 +302,18 @@ You can create a `CLAUDE.md` file in your Home Assistant config directory
 # My Home Assistant Setup
 
 ## Integrations
+
 - Zigbee2MQTT for Zigbee devices
 - ESPHome for custom sensors
 
 ## Naming Conventions
-- Automations: automation_<room>_<function>
-- Scripts: script_<action>
+
+- Automations: automation*<room>*<function>
+- Scripts: script\_<action>
 
 ## Notes
-- Don't modify automations starting with "system_"
+
+- Don't modify automations starting with "system\_"
 ```
 
 A template is available at `/etc/claude/CLAUDE.md.template` that you can copy
