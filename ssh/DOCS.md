@@ -268,9 +268,12 @@ configuration.
 ### Getting Started
 
 1. Open the terminal (via SSH or Web Terminal)
-2. Run `claude` to start Claude Code
+2. Claude Code starts automatically in `/homeassistant`
 3. On first use, run `/login` to authenticate via your browser
 4. Start asking questions about your Home Assistant configuration
+
+The status line at the bottom shows your Home Assistant version, the AI model,
+and context window usage.
 
 ### Example Use Cases
 
@@ -287,7 +290,7 @@ Claude Code comes with default permissions optimized for Home Assistant:
 - **Read/Edit**: `/homeassistant/**` (your HA config)
 - **Read/Edit**: `/addon_configs/**`, `/share/**`
 - **Read**: `/addons/**`, `/backup/**`, `/media/**`, `/ssl/**`
-- **Bash**: `ha *` (HA CLI), `ha-reload`, `yamllint *`, `cat *`, `ls *`, `sqlite3 *`, `python3 *`, `curl http://supervisor/*`
+- **Bash**: `ha *` (HA CLI), `ha-reload`, `yamllint *`, `cat *`, `ls *`, `sqlite3 *`, `python3 *`, `bluetoothctl *`, `curl http://supervisor/*`
 
 These permissions are stored in `/data/.claude/settings.json` and persist across
 restarts. You can customize them by editing this file or using Claude's
@@ -353,6 +356,16 @@ This is equivalent to Developer Tools → YAML → Quick Reload in the UI. It:
 
 Use `ha core restart` only when adding new integrations or changing
 logger/recorder/http settings.
+
+### Built-in Skills
+
+Claude Code comes with the `HomeAssistantReload` skill pre-installed. You can
+invoke it with `/homeassistant-reload` or Claude will automatically use it when
+you ask to apply configuration changes.
+
+The skill intelligently chooses between `ha-reload` (for YAML changes) and
+`ha core restart` (for new integrations), and guides you through validation
+before applying changes.
 
 ## Known issues and limitations
 

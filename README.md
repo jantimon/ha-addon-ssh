@@ -100,10 +100,20 @@ the add-on.
 
 ## Using Claude Code
 
+Claude Code starts automatically when you open the terminal, landing you directly
+in your Home Assistant configuration directory (`/homeassistant`).
+
 1. Open the terminal (via SSH or Web Terminal in the sidebar)
-2. Run `claude` to start Claude Code
+2. Claude Code launches automatically
 3. On first use, run `/login` to authenticate via your browser
 4. Start asking questions about your Home Assistant configuration
+
+**Key features:**
+- Auto-starts in `/homeassistant` directory
+- Pre-configured permissions for HA files and commands
+- `ha-reload` command for instant YAML hot-reload (no restart needed)
+- Status line shows HA version, model, and context usage
+- Built-in `/homeassistant-reload` skill for intelligent config reloading
 
 ## Support
 
