@@ -109,6 +109,7 @@ in your Home Assistant configuration directory (`/homeassistant`).
 4. Start asking questions about your Home Assistant configuration
 
 **Key features:**
+
 - Auto-starts in `/homeassistant` directory
 - Pre-configured permissions for HA files and commands
 - `ha-reload` command for instant YAML hot-reload (no restart needed)
