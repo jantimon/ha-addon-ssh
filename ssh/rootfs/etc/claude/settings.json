@@ -20,7 +20,8 @@
       "Bash(curl -s -X POST http://supervisor/*)",
       "Bash(curl -s -X GET http://supervisor/*)",
       "Bash(curl -s http://supervisor/*)",
-      "Bash(ha-reload)"
+      "Bash(ha-reload)",
+      "Bash(bluetoothctl *)"
     ],
     "deny": []
   }
