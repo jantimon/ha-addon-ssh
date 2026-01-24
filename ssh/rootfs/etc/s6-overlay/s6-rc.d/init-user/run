@@ -108,6 +108,13 @@ if ! bashio::fs.directory_exists "${CLAUDE_PERSISTENT_PATH}"; then
 fi
 ln -s "${CLAUDE_PERSISTENT_PATH}" "${CLAUDE_PATH}"
 
+# Copy/update Claude Code skills on every start
+if bashio::fs.directory_exists "/etc/claude/skills"; then
+    mkdir -p "${CLAUDE_PERSISTENT_PATH}/skills"
+    cp -r /etc/claude/skills/* "${CLAUDE_PERSISTENT_PATH}/skills/" 2>/dev/null \
+        || bashio::log.warning 'Failed to copy Claude skills'
+fi
+
 # Write CLAUDE.md to homeassistant config if configured
 if bashio::config.has_value 'claude_md'; then
     bashio::log.info 'Writing CLAUDE.md from configuration...'
