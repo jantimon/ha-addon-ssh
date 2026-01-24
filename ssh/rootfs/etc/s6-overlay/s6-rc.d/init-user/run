@@ -14,6 +14,9 @@ readonly VSCODE_SERVER_PATH=/root/.vscode-server
 readonly VSCODE_SERVER_PERSISTENT_PATH=/data/.vscode-server
 readonly ZSH_HISTORY_FILE=/root/.zsh_history
 readonly ZSH_HISTORY_PERSISTENT_FILE=/data/.zsh_history
+readonly CLAUDE_PATH=/root/.claude
+readonly CLAUDE_PERSISTENT_PATH=/data/.claude
+readonly CLAUDE_DEFAULT_SETTINGS=/etc/claude/settings.json
 
 # Links some common directories to the user's home folder for convenience
 for dir in "${DIRECTORIES[@]}"; do
@@ -87,6 +90,30 @@ if ! bashio::fs.directory_exists "${VSCODE_SERVER_PERSISTENT_PATH}"; then
         || bashio::exit.nok 'Failed to create a persistent .vscode-server folder'
 fi
 ln -s "${VSCODE_SERVER_PERSISTENT_PATH}" "${VSCODE_SERVER_PATH}"
+
+# Sets up the Claude Code folder to be persistent
+if ! bashio::fs.directory_exists "${CLAUDE_PERSISTENT_PATH}"; then
+    mkdir -p "${CLAUDE_PERSISTENT_PATH}" \
+        || bashio::exit.nok 'Failed to create a persistent .claude folder'
+
+    chmod 700 "${CLAUDE_PERSISTENT_PATH}" \
+        || bashio::exit.nok \
+            'Failed setting permissions on persistent .claude folder'
+
+    # Copy default settings if they exist
+    if bashio::fs.file_exists "${CLAUDE_DEFAULT_SETTINGS}"; then
+        cp "${CLAUDE_DEFAULT_SETTINGS}" "${CLAUDE_PERSISTENT_PATH}/settings.json" \
+            || bashio::log.warning 'Failed to copy default Claude settings'
+    fi
+fi
+ln -s "${CLAUDE_PERSISTENT_PATH}" "${CLAUDE_PATH}"
+
+# Write CLAUDE.md to homeassistant config if configured
+if bashio::config.has_value 'claude_md'; then
+    bashio::log.info 'Writing CLAUDE.md from configuration...'
+    bashio::config 'claude_md' | jq -r '.[]' > /homeassistant/CLAUDE.md \
+        || bashio::log.warning 'Failed to write CLAUDE.md'
+fi
 
 # Disable SSH & Web Terminal session sharing if configured
 if ! bashio::config.true 'share_sessions'; then

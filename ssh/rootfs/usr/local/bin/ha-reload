@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Reload Home Assistant YAML configuration (hot reload, no restart)
+# Equivalent to Developer Tools → YAML → Quick Reload
+#
+# This reloads: automations, scripts, scenes, groups, input helpers,
+# templates, timers, zones, persons, schedules, themes, core config
+#
+# Use 'ha core restart' only for: new integrations, logger, recorder, http changes
+
+set -euo pipefail
+
+if [ -z "${SUPERVISOR_TOKEN:-}" ]; then
+  echo "Error: SUPERVISOR_TOKEN not set" >&2
+  exit 1
+fi
+
+echo "Reloading Home Assistant configuration..."
+
+response=$(curl -s -w "\n%{http_code}" -X POST \
+  -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
+  -H "Content-Type: application/json" \
+  http://supervisor/core/api/services/homeassistant/reload_all)
+
+http_code=$(echo "$response" | tail -n1)
+body=$(echo "$response" | sed '$d')
+
+if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+  echo "Configuration reloaded successfully"
+  echo "Reloaded: automations, scripts, scenes, groups, inputs, templates, zones, themes"
+else
+  echo "Failed to reload configuration (HTTP $http_code)" >&2
+  echo "$body" >&2
+  exit 1
+fi

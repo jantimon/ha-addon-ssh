@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/homeassistant/**)",
+      "Edit(/homeassistant/**)",
+      "Read(/addon_configs/**)",
+      "Edit(/addon_configs/**)",
+      "Read(/addons/**)",
+      "Read(/backup/**)",
+      "Read(/media/**)",
+      "Read(/share/**)",
+      "Edit(/share/**)",
+      "Read(/ssl/**)",
+      "Bash(ha *)",
+      "Bash(yamllint *)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(sqlite3 *)",
+      "Bash(python3 *)",
+      "Bash(curl -s -X POST http://supervisor/*)",
+      "Bash(curl -s -X GET http://supervisor/*)",
+      "Bash(curl -s http://supervisor/*)",
+      "Bash(ha-reload)"
+    ],
+    "deny": []
+  }
+}

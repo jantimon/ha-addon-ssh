@@ -101,6 +101,7 @@ packages:
   - build-base
 init_commands:
   - ls -la
+claude_md: []
 ```
 
 **Note**: _This is just an example, don't copy and paste it! Create your own!_
@@ -235,6 +236,29 @@ Customize your shell environment even more with the `init_commands` option.
 Add one or more shell commands to the list, and they will be executed every
 single time this add-on starts.
 
+#### Option: `claude_md`
+
+Define the contents of your `CLAUDE.md` file through the add-on configuration.
+Each line of the file is a separate entry in the list. When configured, this
+file is written to `/homeassistant/CLAUDE.md` on every add-on start.
+
+Example:
+
+```yaml
+claude_md:
+  - "# My Home Assistant"
+  - ""
+  - "## Integrations"
+  - "- Zigbee2MQTT for Zigbee devices"
+  - "- ESPHome for custom sensors"
+  - ""
+  - "## Notes"
+  - "- Don't modify automations starting with system_"
+```
+
+If left empty, the file is not touched, allowing you to edit it directly via
+the File Editor add-on or VS Code.
+
 ## Using Claude Code
 
 This add-on comes with [Claude Code][claude-code] pre-installed, an AI-powered
@@ -256,6 +280,47 @@ configuration.
 - Troubleshooting integration issues
 - Converting automations between formats
 
+### Pre-configured Permissions
+
+Claude Code comes with default permissions optimized for Home Assistant:
+
+- **Read/Edit**: `/homeassistant/**` (your HA config)
+- **Read/Edit**: `/addon_configs/**`, `/share/**`
+- **Read**: `/addons/**`, `/backup/**`, `/media/**`, `/ssl/**`
+- **Bash**: `ha *` (HA CLI), `ha-reload`, `yamllint *`, `cat *`, `ls *`, `sqlite3 *`, `python3 *`, `curl http://supervisor/*`
+
+These permissions are stored in `/data/.claude/settings.json` and persist across
+restarts. You can customize them by editing this file or using Claude's
+`/permissions` command.
+
+### Custom Project Instructions
+
+You can create a `CLAUDE.md` file in your Home Assistant config directory
+(`/homeassistant/CLAUDE.md`) to give Claude context about your specific setup:
+
+```markdown
+# My Home Assistant Setup
+
+## Integrations
+- Zigbee2MQTT for Zigbee devices
+- ESPHome for custom sensors
+
+## Naming Conventions
+- Automations: automation_<room>_<function>
+- Scripts: script_<action>
+
+## Notes
+- Don't modify automations starting with "system_"
+```
+
+A template is available at `/etc/claude/CLAUDE.md.template` that you can copy
+and customize.
+
+### Session Persistence
+
+Claude Code settings, history, and authentication persist across add-on restarts.
+All data is stored in `/data/.claude/`.
+
 ### YAML Validation
 
 This add-on also includes `yamllint` for validating your YAML files:
@@ -267,6 +332,24 @@ yamllint /config/configuration.yaml
 # Validate all YAML files in config
 yamllint /config/*.yaml
 ```
+
+### Hot Reload Configuration
+
+Use `ha-reload` to apply YAML changes without restarting Home Assistant:
+
+```bash
+ha-reload
+```
+
+This is equivalent to Developer Tools → YAML → Quick Reload in the UI. It:
+
+- Validates configuration first (aborts if invalid)
+- Reloads: automations, scripts, scenes, groups, input helpers, templates,
+  timers, zones, persons, schedules, themes, core config
+- Has no downtime (instant reload)
+
+Use `ha core restart` only when adding new integrations or changing
+logger/recorder/http settings.
 
 ## Known issues and limitations
 

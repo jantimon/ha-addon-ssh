@@ -1,0 +1,50 @@
+# Home Assistant Configuration
+
+This is a Home Assistant configuration directory.
+
+## Directory Structure
+
+- `configuration.yaml` - Main configuration file
+- `automations.yaml` - Automation definitions
+- `scripts.yaml` - Script definitions
+- `scenes.yaml` - Scene definitions
+- `secrets.yaml` - Secret values (API keys, passwords) - DO NOT commit or share
+- `customize.yaml` - Entity customizations
+- `.storage/` - Internal HA storage (do not edit manually)
+
+## Common Tasks
+
+### Reload YAML Configuration (PREFERRED)
+```bash
+ha-reload
+```
+Use this for YAML changes. It's instant, has no downtime, and validates first.
+Reloads: automations, scripts, scenes, groups, inputs, templates, zones, themes.
+
+### Full Restart (only when needed)
+```bash
+ha core restart
+```
+Only use for: new integrations, logger/recorder/http changes.
+
+### Validate Configuration
+```bash
+ha core check
+```
+
+### View Logs
+```bash
+ha core logs
+```
+
+### Validate YAML Syntax
+```bash
+yamllint configuration.yaml
+```
+
+## Best Practices
+
+- Always validate configuration before restarting
+- Use `secrets.yaml` for sensitive values
+- Use packages in `packages/` directory for modular configuration
+- Back up before major changes: `ha backup create`
