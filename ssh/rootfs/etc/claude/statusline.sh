@@ -44,7 +44,7 @@ fi
 bar_width=10
 filled=$((pct * bar_width / 100))
 empty=$((bar_width - filled))
-bar=$(printf '%*s' "$filled" '' | tr ' ' '█')$(printf '%*s' "$empty" '' | tr ' ' '░')
+bar="[$(printf '%*s' "$filled" '' | tr ' ' '=')$(printf '%*s' "$empty" '' | tr ' ' '-')]"
 context_info="${LAVENDER}${bar}${RESET} ${pct}%"
 
 # Build status line
