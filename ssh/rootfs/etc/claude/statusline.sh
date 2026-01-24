@@ -19,7 +19,7 @@ RESET='\033[0m'
 if [[ "$current_dir" == "$project_dir" ]]; then
   rel_dir=""
 elif [[ "$current_dir" == "$project_dir"/* ]]; then
-  rel_dir="${current_dir#$project_dir/}"
+  rel_dir="${current_dir#"$project_dir/"}"
 else
   rel_dir="$current_dir"
 fi

@@ -97,7 +97,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source <(ha completion zsh) && compdef _ha ha
 
 # Start in Home Assistant config directory
-cd /homeassistant
+cd /homeassistant || true
 
 # Auto-start Claude Code (only in interactive, non-nested shells)
 if [[ -o interactive ]] && [[ -z "$CLAUDE_RUNNING" ]]; then
