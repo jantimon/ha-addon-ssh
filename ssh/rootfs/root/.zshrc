@@ -95,3 +95,12 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Home Assistant CLI
 source <(ha completion zsh) && compdef _ha ha
+
+# Start in Home Assistant config directory
+cd /homeassistant
+
+# Auto-start Claude Code (only in interactive, non-nested shells)
+if [[ -o interactive ]] && [[ -z "$CLAUDE_RUNNING" ]]; then
+  export CLAUDE_RUNNING=1
+  claude
+fi
