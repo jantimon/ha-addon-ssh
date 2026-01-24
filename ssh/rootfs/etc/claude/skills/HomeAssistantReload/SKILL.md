@@ -9,22 +9,24 @@ Intelligently reload Home Assistant configuration after YAML changes.
 
 ## When to Use Each Command
 
-| Command | Use When | Downtime |
-|---------|----------|----------|
-| `ha-reload` | YAML changes to automations, scripts, scenes, groups, inputs, templates, zones, themes | None (instant) |
-| `ha core restart` | New integrations, logger/recorder/http changes, database settings | 30+ seconds |
+| Command           | Use When                                                                               | Downtime       |
+| ----------------- | -------------------------------------------------------------------------------------- | -------------- |
+| `ha-reload`       | YAML changes to automations, scripts, scenes, groups, inputs, templates, zones, themes | None (instant) |
+| `ha core restart` | New integrations, logger/recorder/http changes, database settings                      | 30+ seconds    |
 
 ## Workflow
 
 After editing YAML files:
 
 1. **Validate first:**
+
    ```bash
    yamllint <file>
    ha core check
    ```
 
 2. **Apply changes:**
+
    ```bash
    ha-reload
    ```
@@ -52,6 +54,7 @@ After editing YAML files:
 ## Examples
 
 **Example 1: After editing automations.yaml**
+
 ```
 User: "I updated automations.yaml, apply the changes"
 → Run: ha-reload
@@ -59,6 +62,7 @@ User: "I updated automations.yaml, apply the changes"
 ```
 
 **Example 2: After adding a new integration**
+
 ```
 User: "I added mqtt: to configuration.yaml"
 → Run: ha core restart
@@ -66,6 +70,7 @@ User: "I added mqtt: to configuration.yaml"
 ```
 
 **Example 3: After editing multiple YAML files**
+
 ```
 User: "Apply my config changes"
 → Run: yamllint /homeassistant/*.yaml
